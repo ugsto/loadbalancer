@@ -3,13 +3,13 @@ package com.bortoli.loadbalancer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.bortoli.loadbalancer.config.ConfigLoader;
+import com.bortoli.loadbalancer.logger.ApplicationLogger;
 
 @SpringBootApplication
 public class LoadbalancerApplication {
 
 	public static void main(String[] args) {
-		System.out.println(ConfigLoader.load());
+		ApplicationLogger.info("Starting load balancer...");
 		SpringApplication.run(LoadbalancerApplication.class, args);
 	}
 
