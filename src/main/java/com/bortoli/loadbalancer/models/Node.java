@@ -11,7 +11,7 @@ import lombok.ToString;
 public class Node {
 
   @NonNull
-  private final String uri;
+  private final String url;
   private int connections = 0;
 
   public void incrementConnections() {
