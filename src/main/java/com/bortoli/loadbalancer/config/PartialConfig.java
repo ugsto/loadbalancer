@@ -2,8 +2,10 @@ package com.bortoli.loadbalancer.config;
 
 import java.util.Optional;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 import com.bortoli.loadbalancer.config.enums.BalancingAlgorithms;
+import com.bortoli.loadbalancer.models.Node;
 
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
@@ -20,6 +22,6 @@ public class PartialConfig {
     return new Config(
         uri.orElse("localhost:31415"),
         balancingAlgorithm.orElse(BalancingAlgorithms.ROUND_ROBIN),
-        nodes.orElse(new Vector<>()));
+        nodes.orElse(new Vector<>()).stream().map(Node::new).collect(Collectors.toCollection(Vector::new)));
   }
 }
