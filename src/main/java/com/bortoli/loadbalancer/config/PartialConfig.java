@@ -1,6 +1,7 @@
 package com.bortoli.loadbalancer.config;
 
 import java.util.Optional;
+import java.util.Vector;
 
 import com.bortoli.loadbalancer.config.enums.BalancingAlgorithms;
 
@@ -13,16 +14,12 @@ public class PartialConfig {
 
   private final Optional<String> uri;
   private final Optional<BalancingAlgorithms> balancingAlgorithm;
+  private final Optional<Vector<String>> nodes;
 
   public Config asConfig() {
-    if (!uri.isPresent()) {
-      throw new IllegalArgumentException("uri is required");
-    }
-
-    if (!balancingAlgorithm.isPresent()) {
-      throw new IllegalArgumentException("balancingAlgorithm is required");
-    }
-
-    return new Config(uri.get(), balancingAlgorithm.get());
+    return new Config(
+        uri.orElse("localhost:31415"),
+        balancingAlgorithm.orElse(BalancingAlgorithms.ROUND_ROBIN),
+        nodes.orElse(new Vector<>()));
   }
 }

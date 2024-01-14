@@ -1,5 +1,7 @@
 package com.bortoli.loadbalancer.config;
 
+import java.util.Vector;
+
 import com.bortoli.loadbalancer.config.enums.BalancingAlgorithms;
 
 import lombok.Getter;
@@ -13,4 +15,5 @@ public class Config {
 
   private final String uri;
   private final BalancingAlgorithms balancingAlgorithm;
+  private final Vector<String> nodes;
 }
