@@ -25,10 +25,11 @@ public class ReverseProxyService {
 
     try {
       node.incrementConnections();
+      HttpEntity<String> httpEntity = new HttpEntity<>("", proxyRequestDTO.getHeaders());
       return new RestTemplate().exchange(
           uri,
           HttpMethod.valueOf(proxyRequestDTO.getMethod()),
-          new HttpEntity<String>(""),
+          httpEntity,
           String.class);
     } finally {
       node.decrementConnections();
